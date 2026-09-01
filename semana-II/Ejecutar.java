@@ -8,7 +8,7 @@ public class Ejecutar {
         System.out.println("a["+ i + "]=" + a[i]);
        }
 
-       /*
+    /*
        int[]b = new int[10];
 
        Random r = new Random();
@@ -19,7 +19,7 @@ public class Ejecutar {
     */
 
        //forma 2 - aleatorio
-       
+
        int[]b = new int[10];
        int max = 100;
        int min = 1;
