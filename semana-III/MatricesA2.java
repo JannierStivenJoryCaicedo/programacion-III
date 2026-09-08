@@ -7,7 +7,6 @@ public class MatricesA2 {
             for(int j = 0; j < m[0].length; j++){
                 System.out.println("m["+i+"]["+j+"]="+m[i][j]);
             }           
-        }
-        
+        }      
     }
 }
