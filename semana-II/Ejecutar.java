@@ -4,9 +4,10 @@ public class Ejecutar {
        int[]a = {2, 8, 10, 6, 15, 20, 21, 1, 3, 12};
 
        //recorrer arreglo
-       for(int i = 0; i < a.length; i++){
+                    
+      for(int i = 0; i < a.length; i++){
         System.out.println("a["+ i + "]=" + a[i]);
-       }
+      }
 
     /*
        int[]b = new int[10];
