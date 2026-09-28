@@ -14,7 +14,6 @@ public class Funcion {
     }
 
     public Funcion(String h, Pelicula p, String[][] s, int sd, int ts) {
-
         horario = h;
         pelicula = p;
         matrizSillas = s;
@@ -23,7 +22,6 @@ public class Funcion {
     }
 
     public void Set(String h, Pelicula p, String[][] s, int sd, int ts) {
-
         horario = h;
         pelicula = p;
         matrizSillas = s;
@@ -32,22 +30,18 @@ public class Funcion {
     }
 
     public String getHorario() {
-
         return horario;
     }
 
     public Pelicula getPelicula() {
-
         return pelicula;
     }
 
     public String[][] getSillas() {
-
         return matrizSillas;
     }
 
     public int getSillaDisponible() {
-
         return calcularDisponible();
     }
 
@@ -64,5 +58,21 @@ public class Funcion {
             }
         }
         return cantidad;
+    }
+
+    public void llenarMatrizAleatoriamente() {
+        int cantidad = (int) (Math.random() * 11) + 5;
+        int ocupadas = 0;
+
+        while (ocupadas < cantidad) {
+            int fila = (int) (Math.random() * matrizSillas.length);
+            int columna = (int) (Math.random() * matrizSillas[0].length);
+
+            if (matrizSillas[fila][columna].equals("_")) {
+                matrizSillas[fila][columna] = "X";
+                ocupadas++;
+            }
+        }
+        sillaDisponible = calcularDisponible();
     }
 }

@@ -29,7 +29,6 @@ public class Sala {
     }
 
     public Funcion[] getFunciones() {
-
         return funciones;
     }
 
