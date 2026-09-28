@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Sala {
     private int tipoSala;
     private String horario;
@@ -62,6 +64,22 @@ public class Sala {
                     { "E", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_" },
                     { "F", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_" }
             };
+        }
+    }
+
+    public void calcularOcupacionSala() {
+        Random aleatorio = new Random();
+        int sillaVacia = 10 + aleatorio.nextInt(10);
+        int sillaLlena = 0;
+
+        while (sillaLlena < sillaVacia) {
+            int filaRam = aleatorio.nextInt(matrizSala.length);
+            int colRam = 1 + aleatorio.nextInt(12);
+
+            if (matrizSala[filaRam][colRam].equals("_")) {
+                matrizSala[filaRam][colRam] = "X";
+                sillaLlena++;
+            }
         }
     }
 
