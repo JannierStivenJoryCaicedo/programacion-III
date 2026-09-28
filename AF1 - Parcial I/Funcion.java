@@ -48,6 +48,21 @@ public class Funcion {
 
     public int getSillaDisponible() {
 
-        return sillaDisponible;
+        return calcularDisponible();
+    }
+
+    public int calcularDisponible() {
+        int cantidad = 0;
+        if (matrizSillas != null) {
+            for (int i = 0; i < matrizSillas.length; i++) {
+                for (int j = 0; j < matrizSillas[i].length; j++) {
+
+                    if (matrizSillas[i][j].equals("_")) {
+                        cantidad++;
+                    }
+                }
+            }
+        }
+        return cantidad;
     }
 }
