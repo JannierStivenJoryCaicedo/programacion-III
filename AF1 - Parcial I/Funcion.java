@@ -75,4 +75,17 @@ public class Funcion {
         }
         sillaDisponible = calcularDisponible();
     }
+
+    public void mostrarSillas() {
+        System.out.println("Horario: " + horario);
+        System.out.println("Pelicula: " + pelicula.getNombre());
+
+        for (int i = 0; i < matrizSillas.length; i++) {
+            for (int j = 0; j < matrizSillas[i].length; j++) {
+                System.out.print(matrizSillas[i][j] + "\t");
+            }
+        }
+        System.out.println("Sillas disponibles: " + sillaDisponible);
+    }
+
 }
