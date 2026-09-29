@@ -2,23 +2,23 @@ public class Pelicula {
     private String nombre;
     private String idioma;
     private String tipo;
-    private String duracion;
+    private int duracion;
 
     public Pelicula() {
         nombre = "";
         idioma = "";
         tipo = "";
-        duracion = "";
+        duracion = 0;
     }
 
-    public Pelicula(String n, String i, String t, String d) {
+    public Pelicula(String n, String i, String t, int d) {
         nombre = n;
         idioma = i;
         tipo = t;
         duracion = d;
     }
 
-    public void set(String n, String i, String t, String d) {
+    public void Set(String n, String i, String t, int d) {
         nombre = n;
         idioma = i;
         tipo = t;
@@ -37,7 +37,7 @@ public class Pelicula {
         return tipo;
     }
 
-    public String getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
@@ -45,6 +45,6 @@ public class Pelicula {
         System.out.println("Nombre: " + nombre);
         System.out.println("Idioma: " + idioma);
         System.out.println("Tipo: " + tipo);
-        System.out.println("Duracion: " + duracion);
+        System.out.println("Duracion: " + duracion + " minutos");
     }
 }

@@ -5,23 +5,12 @@ public class Sala {
     public Sala() {
         tipoSala = "";
         funciones = new Funcion[3];
-
-        for (int i = 0; i < funciones.length; i++) {
-            funciones[i] = new Funcion();
-        }
     }
 
-    public Sala(String ts, String h, int s) {
+    public Sala(String ts) {
         tipoSala = ts;
         funciones = new Funcion[3];
-
-        for (int i = 0; i < funciones.length; i++) {
-            funciones[i] = new Funcion();
-        }
-    }
-
-    public void Set(String ts, String h, int s) {
-        tipoSala = ts;
+        crearFunciones();
     }
 
     public String getTipoSala() {
@@ -32,30 +21,51 @@ public class Sala {
         return funciones;
     }
 
-    public void asignarFuncion(int posicion, Funcion funcion) {
-        funciones[posicion] = funcion;
-    }
+    public void crearFunciones() {
+        String[] horarios = { "14:00 - 16:30", "16:30 - 19:00", "19:00 - 21:00"};
 
-    public void imprimir() {
-        System.out.println(
-                "Tipo de Sala: " + tipoSala);
-    }
-
-    public void mostrarFuncion() {
-        System.out.println();
-        System.out.println(tipoSala);
-
-        for (int i = 0; i < funciones.length; i++) {
-            System.out.println();
-            System.out.println("Funcion " + (i + 1));
-            if (funciones[i].getPelicula().getNombre().equals("")) {
-                System.out.println("Sin pelicula asignada.");
-
+        for (int i = 0; i < 3; i++) {
+            String[][] matriz;
+            if (tipoSala.charAt(0) == '3') {
+                matriz = crearMatrizSala3();
             } else {
-                System.out.println("Horario: " + funciones[i].getHorario());
-                System.out.println("Pelicula: " + funciones[i].getPelicula().getNombre());
+                matriz = crearMatrizSala12();
             }
+            Pelicula pelicula = new Pelicula();
+            funciones[i] = new Funcion(horarios[i], pelicula, matriz, tipoSala.charAt(0) - '0');
+            funciones[i].ocuparSillasAleatorias();
         }
     }
 
+    public String[][] crearMatrizSala12() {
+        String[][] matriz = {
+            {"A", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"B", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"C", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"D", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"E", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"F", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"G", " ", " ", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", " "},
+            {"H", " ", " ", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", " "}
+        };
+
+        return matriz;
+    }
+
+    public String[][] crearMatrizSala3() {
+        String[][] matriz = {
+            {"A", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"B", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"C", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"D", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"E", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"},
+            {"F", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"}
+        };
+        return matriz;
+    }
+
+    public void asignarFuncion(int posicion, Pelicula pelicula) {
+        funciones[posicion].asignarPelicula(pelicula);
+    }
+    
 }
