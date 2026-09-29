@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class CinemaStar {
-
+        
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         GestionCine cine = new GestionCine();
