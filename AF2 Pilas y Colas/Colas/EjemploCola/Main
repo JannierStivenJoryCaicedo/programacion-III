@@ -1,0 +1,92 @@
+import java.util.Queue;
+import java.util.LinkedList;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        // Creamos las colas de las dos cajas.
+        Queue<Cliente> caja1 = new LinkedList<Cliente>();
+        Queue<Cliente> caja2 = new LinkedList<Cliente>();
+
+        // Creamos los clientes.
+        Cliente c1 = new Cliente("Ana", 5, 1);
+        Cliente c2 = new Cliente("Carlos", 3, 2);
+        Cliente c3 = new Cliente("Laura", 8, 3);
+        Cliente c4 = new Cliente("Pedro", 2, 4);
+        Cliente c5 = new Cliente("Sofia", 6, 5);
+
+        // Agregamos los clientes a las colas.
+        caja1.offer(c1);
+        caja1.offer(c2);
+        caja1.offer(c3);
+
+        caja2.offer(c4);
+        caja2.offer(c5);
+
+        // Llamamos al metodo para atender a los clientes.
+        AtenderClientes(caja1, caja2);
+    }
+
+    public static void AtenderClientes(
+            Queue<Cliente> a, Queue<Cliente> b) {
+
+        // Cola auxiliar para guardar los clientes atendidos.
+        Queue<Cliente> atendidos = new LinkedList<Cliente>();
+
+        // Atendemos los clientes de la caja 1.
+        while (!a.isEmpty()) {
+
+            // Consultamos quien sigue sin retirarlo.
+            Cliente siguiente = a.peek();
+
+            System.out.println("Caja 1 atiende a: "
+                    + siguiente.getNombre());
+
+            System.out.println("Turno: "
+                    + siguiente.getTurno());
+
+            System.out.println("Productos: "
+                    + siguiente.getProductos());
+
+            // Retiramos al cliente que estaba primero.
+            Cliente cliente = a.poll();
+
+            // Guardamos el cliente en la cola auxiliar.
+            atendidos.offer(cliente);
+
+            System.out.println("--------------------");
+        }
+
+        // Atendemos los clientes de la caja 2.
+        while (!b.isEmpty()) {
+
+            Cliente siguiente = b.peek();
+
+            System.out.println("Caja 2 atiende a: "
+                    + siguiente.getNombre());
+
+            System.out.println("Turno: "
+                    + siguiente.getTurno());
+
+            System.out.println("Productos: "
+                    + siguiente.getProductos());
+
+            Cliente cliente = b.poll();
+
+            atendidos.offer(cliente);
+
+            System.out.println("--------------------");
+        }
+
+        // Mostramos los clientes atendidos.
+        System.out.println("\nClientes atendidos:");
+
+        while (!atendidos.isEmpty()) {
+            Cliente c = atendidos.poll();
+
+            System.out.println(c.getNombre()
+                    + " - Turno " + c.getTurno());
+        }
+    }
+}
