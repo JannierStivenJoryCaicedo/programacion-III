@@ -113,6 +113,8 @@ public class Principal {
 
             opcion = leerEntero();
 
+            //Se resta 1 porque las opciones del menú comienzan en 1, pero los índices de Java comienzan en 0.
+
             if (opcion >= 1 && opcion <= personajes.size()) {
 
                 Personaje seleccionado = personajes.get(opcion - 1);
