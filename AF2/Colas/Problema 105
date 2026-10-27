@@ -1,0 +1,156 @@
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Problema105 {
+
+    // Datos de cada repartidor.
+    static class Repartidor {
+        String seguridadSocial;
+        String nombre;
+        int diasTrabajados;
+
+        public Repartidor(String seguridadSocial, String nombre,
+                          int diasTrabajados) {
+            this.seguridadSocial = seguridadSocial;
+            this.nombre = nombre;
+            this.diasTrabajados = diasTrabajados;
+        }
+    }
+
+    // Datos de un trabajo de un dia.
+    static class Trabajo {
+        String seguridadSocial;
+        String entidad;
+
+        public Trabajo(String seguridadSocial, String entidad) {
+            this.seguridadSocial = seguridadSocial;
+            this.entidad = entidad;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Lista enlazada ordenada de repartidores.
+        LinkedList<Repartidor> repartidores = new LinkedList<>();
+
+        // Cola con los trabajos de un unico dia.
+        Queue<Trabajo> cola = new LinkedList<>();
+
+        // Cargamos la lista que ya existe.
+        System.out.println("Ingrese los repartidores existentes.");
+        System.out.println("Escriba 0 para terminar.");
+
+        while (true) {
+            System.out.print("Numero de seguridad social: ");
+            String numero = sc.nextLine();
+
+            if (numero.equals("0")) {
+                break;
+            }
+
+            System.out.print("Nombre: ");
+            String nombre = sc.nextLine();
+
+            System.out.print("Dias trabajados: ");
+            int dias = Integer.parseInt(sc.nextLine());
+
+            // Insertamos el repartidor manteniendo el orden.
+            Repartidor nuevo = new Repartidor(numero, nombre, dias);
+
+            int posicion = 0;
+
+            while (posicion < repartidores.size()
+                    && repartidores.get(posicion).seguridadSocial
+                    .compareTo(numero) < 0) {
+                posicion++;
+            }
+
+            repartidores.add(posicion, nuevo);
+        }
+
+        // Cargamos los trabajos del dia en la cola.
+        System.out.println("\nIngrese los trabajos del dia.");
+        System.out.println("Escriba 0 para terminar.");
+
+        while (true) {
+            System.out.print("Numero de seguridad social: ");
+            String numero = sc.nextLine();
+
+            if (numero.equals("0")) {
+                break;
+            }
+
+            System.out.print("Entidad de la propaganda: ");
+            String entidad = sc.nextLine();
+
+            cola.add(new Trabajo(numero, entidad));
+        }
+
+        // Procesamos todos los trabajos de la cola.
+        while (!cola.isEmpty()) {
+
+            Trabajo trabajo = cola.remove();
+
+            boolean encontrado = false;
+
+            // Buscamos al repartidor en la lista ordenada.
+            for (Repartidor r : repartidores) {
+
+                int comparacion =
+                        r.seguridadSocial.compareTo(
+                                trabajo.seguridadSocial);
+
+                if (comparacion == 0) {
+
+                    // El repartidor trabajo un dia mas.
+                    r.diasTrabajados++;
+                    encontrado = true;
+                    break;
+
+                } else if (comparacion > 0) {
+                    // Como la lista esta ordenada, no hace falta seguir.
+                    break;
+                }
+            }
+
+            // Si no existe, lo creamos y lo insertamos ordenadamente.
+            if (!encontrado) {
+
+                System.out.print("Nombre del nuevo repartidor "
+                        + trabajo.seguridadSocial + ": ");
+                String nombre = sc.nextLine();
+
+                Repartidor nuevo = new Repartidor(
+                        trabajo.seguridadSocial, nombre, 1);
+
+                int posicion = 0;
+
+                while (posicion < repartidores.size()
+                        && repartidores.get(posicion).seguridadSocial
+                        .compareTo(trabajo.seguridadSocial) < 0) {
+                    posicion++;
+                }
+
+                repartidores.add(posicion, nuevo);
+            }
+        }
+
+        // Mostramos la lista actualizada.
+        System.out.println("\n--- REPARTIDORES ACTUALIZADOS ---");
+
+        for (Repartidor r : repartidores) {
+            System.out.println("Seguridad social: "
+                    + r.seguridadSocial);
+            System.out.println("Nombre: " + r.nombre);
+            System.out.println("Dias trabajados: "
+                    + r.diasTrabajados);
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
