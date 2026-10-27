@@ -1,3 +1,5 @@
+package AF2;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +10,6 @@ public class Principal {
 
     public static void main(String[] args) {
 
-        // Crear los personajes
         Personaje xieLian = new Personaje("Xie Lian");
         Personaje huaCheng = new Personaje("Hua Cheng");
         Personaje weiWuxian = new Personaje("Wei Wuxian");
@@ -88,7 +89,6 @@ public class Principal {
                 "Cinta tradicional del clan Lan")
         );
 
-        // Lista de personajes
         List<Personaje> personajes = new ArrayList<>();
 
         personajes.add(xieLian);
@@ -96,7 +96,6 @@ public class Principal {
         personajes.add(weiWuxian);
         personajes.add(lanWangji);
 
-        // Iniciar el menú
         int opcion;
 
         do {
@@ -106,9 +105,7 @@ public class Principal {
             System.out.println("================================");
 
             for (int i = 0; i < personajes.size(); i++) {
-                System.out.println(
-                    (i + 1) + ". " + personajes.get(i).getNombre()
-                );
+                System.out.println((i + 1) + ". " + personajes.get(i).getNombre());
             }
 
             System.out.println("0. Salir");
@@ -119,13 +116,10 @@ public class Principal {
             if (opcion >= 1 && opcion <= personajes.size()) {
 
                 Personaje seleccionado = personajes.get(opcion - 1);
-
                 gestionarPersonaje(seleccionado);
 
             } else if (opcion != 0) {
-
                 System.out.println("Opción no válida.");
-
             }
 
         } while (opcion != 0);
@@ -135,7 +129,6 @@ public class Principal {
         scanner.close();
     }
 
-    // Menú para administrar un personaje
     public static void gestionarPersonaje(Personaje personaje) {
 
         int opcion;
@@ -179,7 +172,6 @@ public class Principal {
         } while (opcion != 0);
     }
 
-    // Mostrar todos los objetos del personaje
     public static void mostrarInventario(Personaje personaje) {
 
         System.out.println("\n--- INVENTARIO DE "
@@ -198,7 +190,7 @@ public class Principal {
         mostrarLista(personaje.getAccesorios());
     }
 
-    // Mostrar una lista numerada
+    // Aqui se muestra una lista numerada
     public static <T> void mostrarLista(List<T> lista) {
 
         if (lista.isEmpty()) {
@@ -214,7 +206,6 @@ public class Principal {
         }
     }
 
-    // Añadir un objeto al inventario
     public static void agregarObjeto(Personaje personaje) {
 
         System.out.println("\n¿Qué deseas añadir?");
@@ -273,7 +264,6 @@ public class Principal {
         );
     }
 
-    // Quitar un objeto del inventario
     public static void quitarObjeto(Personaje personaje) {
 
         System.out.println("\n¿Qué deseas quitar?");
@@ -306,7 +296,6 @@ public class Principal {
         }
     }
 
-    // Eliminar una túnica
     public static void eliminarTunica(Personaje personaje) {
 
         List<Tunica> lista = personaje.getTunicas();
@@ -330,7 +319,6 @@ public class Principal {
         }
     }
 
-    // Eliminar un arma
     public static void eliminarArma(Personaje personaje) {
 
         List<Arma> lista = personaje.getArmas();
@@ -354,7 +342,6 @@ public class Principal {
         }
     }
 
-    // Eliminar un accesorio
     public static void eliminarAccesorio(Personaje personaje) {
 
         List<Accesorio> lista = personaje.getAccesorios();
@@ -377,23 +364,6 @@ public class Principal {
             System.out.println("Accesorio eliminado correctamente.");
         } else {
             System.out.println("Número de accesorio no válido.");
-        }
-    }
-
-    // Leer números sin que una entrada incorrecta cierre el programa
-    public static int leerEntero() {
-
-        while (true) {
-
-            String entrada = scanner.nextLine().trim();
-
-            try {
-                return Integer.parseInt(entrada);
-            } catch (NumberFormatException e) {
-                System.out.print(
-                    "Introduce un número válido: "
-                );
-            }
         }
     }
 }

@@ -1,9 +1,11 @@
-public class Tunica {
+package AF2;
+
+public class Accesorio {
 
     private String nombre;
     private String descripcion;
 
-    public Tunica(String nombre, String descripcion) {
+    public Accesorio(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }

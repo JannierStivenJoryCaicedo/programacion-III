@@ -1,9 +1,11 @@
-public class Arma {
+package AF2;
+
+public class Tunica {
 
     private String nombre;
     private String descripcion;
 
-    public Arma(String nombre, String descripcion) {
+    public Tunica(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }

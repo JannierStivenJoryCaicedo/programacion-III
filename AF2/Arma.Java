@@ -1,9 +1,11 @@
-public class Accesorio {
+package AF2;
+
+public class Arma {
 
     private String nombre;
     private String descripcion;
 
-    public Accesorio(String nombre, String descripcion) {
+    public Arma(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }

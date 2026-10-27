@@ -1,3 +1,5 @@
+package AF2;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +23,6 @@ public class Personaje {
         return nombre;
     }
 
-    // Métodos para añadir objetos
-
     public void agregarTunica(Tunica tunica) {
         tunicas.add(tunica);
     }
@@ -35,8 +35,6 @@ public class Personaje {
         accesorios.add(accesorio);
     }
 
-    // Métodos para consultar las listas
-
     public List<Tunica> getTunicas() {
         return tunicas;
     }
@@ -48,8 +46,6 @@ public class Personaje {
     public List<Accesorio> getAccesorios() {
         return accesorios;
     }
-
-    // Métodos para eliminar objetos por su posición
 
     public boolean eliminarTunica(int indice) {
         if (indice >= 0 && indice < tunicas.size()) {
